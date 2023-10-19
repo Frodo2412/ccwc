@@ -17,7 +17,7 @@ fn main() {
     } else if query == "-w" {
         let words: Vec<&str> = contents.split_ascii_whitespace().collect();
         println!("{} {}", words.len(), file_path);
-    } else {
-        println!("{} is not a supported flag", query);
+    } else if query == "-m" {
+        println!("{} {}", contents.chars().count(), file_path);
     }
 }
