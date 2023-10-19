@@ -1,5 +1,23 @@
 use std::{env, fs};
 
+fn count_bytes(contents: String) -> usize {
+    contents.len()
+}
+
+fn count_lines(contents: String) -> usize {
+    let lines: Vec<&str> = contents.split("\n").collect();
+    lines.len()
+}
+
+fn count_words(contents: String) -> usize {
+    let words: Vec<&str> = contents.split_ascii_whitespace().collect();
+    words.len()
+}
+
+fn count_characters(contents: String) -> usize {
+    contents.chars().count()
+}
+
 fn main() {
     let args: Vec<String> = env::args().collect();
 
@@ -10,14 +28,12 @@ fn main() {
         .expect("File not found");
 
     if query == "-c" {
-        println!("{} {}", contents.len(), file_path);
+        println!("{} {}", count_bytes(contents), file_path);
     } else if query == "-l" {
-        let lines: Vec<&str> = contents.split("\n").collect();
-        println!("{} {}", lines.len(), file_path);
+        println!("{} {}", count_lines(contents), file_path);
     } else if query == "-w" {
-        let words: Vec<&str> = contents.split_ascii_whitespace().collect();
-        println!("{} {}", words.len(), file_path);
+        println!("{} {}", count_words(contents), file_path);
     } else if query == "-m" {
-        println!("{} {}", contents.chars().count(), file_path);
+        println!("{} {}", count_characters(contents), file_path);
     }
 }
